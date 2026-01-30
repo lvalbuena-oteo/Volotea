@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisify × Volotea | Propuesta de Bienestar Corporativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&family=Lato:ital,wght@1,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --volotea-red: #E12948;
+            --volotea-red-dark: #c91f3c;
+            --volotea-brown: #452224;
+            --volotea-brown-light: #5a3335;
+            --cream: #FDF8F4;
+            --cream-dark: #f5ebe3;
+            --white: #FFFFFF;
+            --gray-100: #f7f7f7;
+            --gray-200: #e8e8e8;
+            --gray-600: #666;
+            --fisify-navy: #2D3047;
+            --fisify-navy-light: #3d4163;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--volotea-brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Checkerboard Pattern - Volotea Inspired */
+        .checker-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(45deg, var(--volotea-red) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--volotea-red) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--volotea-red) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--volotea-red) 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+        }
+
+        /* Icon styles */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-lg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(253, 248, 244, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(69, 34, 36, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logos {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-volotea {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--volotea-brown);
+        }
+
+        .logo-volotea .letter-a {
+            display: inline-block;
+            transform: scaleY(-1);
+            position: relative;
+            top: 0.08em;
+        }
+
+        .logo-fisify {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--fisify-navy);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-fisify .i-nodot {
+            font-style: italic;
+        }
+
+        .logo-separator {
+            width: 2px;
+            height: 24px;
+            background: var(--volotea-red);
+            opacity: 0.3;
+        }
+
+        .header-badge {
+            background: var(--volotea-red);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero-bg-element {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            right: -200px;
+            top: -100px;
+            background: linear-gradient(135deg, var(--volotea-red) 0%, var(--volotea-red-dark) 100%);
+            transform: rotate(45deg);
+            opacity: 0.08;
+            border-radius: 80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--volotea-red);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--gray-200);
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--volotea-red);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 4px 6px rgba(69, 34, 36, 0.02),
+                0 20px 40px rgba(69, 34, 36, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--volotea-red), var(--fisify-navy));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--volotea-red), var(--volotea-red-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .card-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .card-list {
+            list-style: none;
+        }
+
+        .card-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--fisify-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .check-icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--volotea-red);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .section-title span {
+            color: var(--volotea-red);
+        }
+
+        /* Objectives Section */
+        .objectives {
+            background: var(--white);
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .objective-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(69, 34, 36, 0.1);
+        }
+
+        .objective-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--volotea-red);
+            opacity: 0.15;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            line-height: 1;
+        }
+
+        .objective-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--volotea-red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .objective-card h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .objective-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--volotea-brown);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--volotea-red);
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+        }
+
+        .services .section-tag {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .services .section-title span {
+            color: var(--volotea-red);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-block {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-block:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--volotea-red);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--volotea-red);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-type {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--volotea-red);
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Employee Types */
+        .employees {
+            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+        }
+
+        .employee-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .employee-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(69, 34, 36, 0.06);
+        }
+
+        .employee-header {
+            background: linear-gradient(135deg, var(--volotea-red), var(--volotea-red-dark));
+            padding: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .employee-header-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .employee-header h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .employee-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .employee-body {
+            padding: 2rem;
+        }
+
+        .employee-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .employee-stat:last-child {
+            border-bottom: none;
+        }
+
+        .employee-stat-label {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .employee-stat-value {
+            font-weight: 600;
+            color: var(--volotea-brown);
+        }
+
+        /* Platform Features */
+        .platform {
+            background: var(--cream);
+        }
+
+        .platform-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .platform-content.single-column {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .platform-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .platform-mockup {
+            position: relative;
+        }
+
+        .mockup-phone {
+            background: var(--volotea-brown);
+            border-radius: 40px;
+            padding: 12px;
+            max-width: 320px;
+            margin: 0 auto;
+            box-shadow: 
+                0 25px 50px rgba(69, 34, 36, 0.2),
+                inset 0 0 0 2px rgba(255,255,255,0.1);
+        }
+
+        .mockup-screen {
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+        }
+
+        .mockup-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .platform-features-list {
+            list-style: none;
+        }
+
+        .platform-feature {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .platform-feature:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--volotea-red), var(--fisify-navy));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-content p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* Differentiators */
+        .differentiators {
+            background: var(--white);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .diff-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .diff-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .diff-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .diff-card:hover {
+            border-color: var(--volotea-red);
+            transform: translateY(-4px);
+        }
+
+        .diff-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--volotea-red);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto 1.25rem;
+        }
+
+        .diff-card h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .diff-card p {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        /* Pricing */
+        .pricing {
+            background: linear-gradient(135deg, var(--volotea-brown) 0%, var(--volotea-brown-light) 100%);
+            color: var(--white);
+        }
+
+        .pricing .section-tag {
+            background: var(--volotea-red);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .price-card.featured {
+            background: var(--white);
+            color: var(--volotea-brown);
+            border: none;
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .price-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .price-card.featured .price-label {
+            color: var(--volotea-red);
+        }
+
+        .price-amount {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .price-amount span {
+            font-size: 1.25rem;
+            opacity: 0.7;
+        }
+
+        .price-period {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-card.featured .price-period {
+            color: var(--gray-600);
+        }
+
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .price-card.featured .price-features {
+            border-color: var(--gray-200);
+        }
+
+        .price-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .price-features .check {
+            color: var(--fisify-navy);
+            width: 18px;
+            height: 18px;
+        }
+
+        .price-card:not(.featured) .price-features .check {
+            color: var(--volotea-red);
+        }
+
+        /* Timeline */
+        .timeline {
+            background: var(--cream);
+        }
+
+        .timeline-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 27px;
+            top: 56px;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            width: 56px;
+            height: 56px;
+            background: var(--volotea-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            flex-grow: 1;
+            box-shadow: 0 4px 12px rgba(69, 34, 36, 0.06);
+        }
+
+        .timeline-card h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--volotea-red);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .contact-item svg {
+            width: 24px;
+            height: 24px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--volotea-red);
+        }
+
+        .btn-primary:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--volotea-brown);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-volotea {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--white);
+        }
+
+        .footer-logo-volotea .letter-a {
+            display: inline-block;
+            transform: scaleY(-1);
+            position: relative;
+            top: 0.08em;
+        }
+
+        .footer-logo-fisify {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .footer-divider {
+            color: var(--volotea-red);
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .stat {
+                text-align: center;
+            }
+
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos {
+                gap: 1rem;
+            }
+
+            .logo-volotea {
+                font-size: 1.3rem;
+            }
+
+            .logo-fisify {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="checker-pattern"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="logos">
+                <span class="logo-volotea">VOLOTE<span class="letter-a">V</span></span>
+                <div class="logo-separator"></div>
+                <span class="logo-fisify">fısify</span>
+            </div>
+            <div class="header-badge">Propuesta Bienestar 2025</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-element"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Bienestar<br>
+                    <span>Que Despega</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Un ecosistema integral de fisioterapia y prevención diseñado específicamente para el equipo Volotea. Cuidamos a quienes hacen posible cada vuelo.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">+80%</div>
+                        <div class="stat-label">Reducción dolor</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">360°</div>
+                        <div class="stat-label">Ecosistema</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Soporte Digital</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg class="icon icon-lg" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="card-title">Dolce Farniente</div>
+                    </div>
+                    <ul class="card-list">
+                        <li>
+                            <span class="check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            <span>Fisioterapia presencial en las nuevas oficinas centrales</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            <span>Videoconsultas para tripulación y bases externas</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            <span>App con ejercicios personalizados y seguimiento</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            <span>Analítica de datos para RRHH</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section class="objectives">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Objetivos del Proyecto</span>
+                <h2 class="section-title">Más que reducir bajas,<br><span>crear bienestar</span></h2>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <span class="objective-number">01</span>
+                    <div class="objective-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M20 21a8 8 0 0 0-16 0"/>
+                        </svg>
+                    </div>
+                    <h3>Satisfacción del Empleado</h3>
+                    <p>El proyecto inicial se centra en el bienestar y satisfacción del equipo, no únicamente en la reducción de bajas laborales.</p>
+                </div>
+                <div class="objective-card">
+                    <span class="objective-number">02</span>
+                    <div class="objective-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Prevención Activa</h3>
+                    <p>Prevenir lesiones relacionadas con sedentarismo, deporte y ergonomía: cervicales, lumbares y hombros.</p>
+                </div>
+                <div class="objective-card">
+                    <span class="objective-number">03</span>
+                    <div class="objective-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>Escalabilidad</h3>
+                    <p>Piloto en oficinas centrales con expansión futura a tripulación y bases externas mediante plataforma digital.</p>
+                </div>
+                <div class="objective-card">
+                    <span class="objective-number">04</span>
+                    <div class="objective-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </div>
+                    <h3>Datos para RRHH</h3>
+                    <p>Información valiosa sobre hábitos de salud, adherencia y mejoras que permiten tomar decisiones informadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Modelo de Servicio</span>
+                <h2 class="section-title">Presencial + Digital<br><span>Lo mejor de dos mundos</span></h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-block">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                        </div>
+                        <div class="service-type">Fisioterapia Presencial</div>
+                    </div>
+                    <ul class="service-features">
+                        <li>
+                            <span class="dot"></span>
+                            <span>Sesiones de 30 minutos en "Dolce Farniente"</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Espacio y organización provistos por Volotea</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Mínimo 5 horas de servicio semanal</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Tratamiento personalizado, no solo "masaje"</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Seguimiento continuo de cada paciente</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-block">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                        <div class="service-type">Ecosistema Digital</div>
+                    </div>
+                    <ul class="service-features">
+                        <li>
+                            <span class="dot"></span>
+                            <span>Videoconsultas para empleados fuera de sede</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>App con ejercicios guiados y corrección por cámara</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Chat directo con fisioterapeuta</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Registro de hábitos saludables</span>
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            <span>Programas de prevención: espalda sana, fuerza, suelo pélvico</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Types -->
+    <section class="employees">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Tipología de Empleados</span>
+                <h2 class="section-title">Conocemos a <span>tu equipo</span></h2>
+            </div>
+            <div class="employee-cards">
+                <div class="employee-card">
+                    <div class="employee-header">
+                        <div class="employee-header-icon">
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Oficinas Centrales</h3>
+                            <p>Servicio presencial + digital</p>
+                        </div>
+                    </div>
+                    <div class="employee-body">
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Edad media</span>
+                            <span class="employee-stat-value">28-30 años</span>
+                        </div>
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Distribución</span>
+                            <span class="employee-stat-value">50% H / 50% M</span>
+                        </div>
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Perfil</span>
+                            <span class="employee-stat-value">Sedentario (sentados)</span>
+                        </div>
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Dolencias principales</span>
+                            <span class="employee-stat-value">Cervical, lumbar, hombro</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee-card">
+                    <div class="employee-header" style="background: linear-gradient(135deg, var(--fisify-navy), var(--fisify-navy-light));">
+                        <div class="employee-header-icon">
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                                <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Bases y Tripulación</h3>
+                            <p>Servicio 100% digital</p>
+                        </div>
+                    </div>
+                    <div class="employee-body">
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Acceso</span>
+                            <span class="employee-stat-value">App + Videoconsulta</span>
+                        </div>
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Perfiles</span>
+                            <span class="employee-stat-value">TCP + Mantenimiento</span>
+                        </div>
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Disponibilidad</span>
+                            <span class="employee-stat-value">24/7 desde cualquier base</span>
+                        </div>
+                        <div class="employee-stat">
+                            <span class="employee-stat-label">Motivo</span>
+                            <span class="employee-stat-value">Logística y seguridad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="platform">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Plataforma Fisify</span>
+                <h2 class="section-title">Todo en <span>una app</span></h2>
+            </div>
+            <div class="platform-content">
+                <div class="platform-mockup">
+                    <div class="mockup-phone">
+                        <div class="mockup-screen">
+                            <img src="Volotea_app.png" alt="Fisify × Volotea App" class="mockup-image">
+                        </div>
+                    </div>
+                </div>
+                <div class="platform-features">
+                    <ul class="platform-features-list">
+                        <li class="platform-feature">
+                            <div class="feature-icon">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="white">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Registro Inicial</h4>
+                                <p>Edad, sexo, actividad deportiva, dolencias previas y objetivos de cada empleado.</p>
+                            </div>
+                        </li>
+                        <li class="platform-feature">
+                            <div class="feature-icon">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="white">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Corrección por Cámara</h4>
+                                <p>Ejercicios guiados con feedback en tiempo real para asegurar la correcta ejecución.</p>
+                            </div>
+                        </li>
+                        <li class="platform-feature">
+                            <div class="feature-icon">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="white">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Seguimiento Activo</h4>
+                                <p>Llamadas de seguimiento, recordatorios y chat directo con el fisioterapeuta asignado.</p>
+                            </div>
+                        </li>
+                        <li class="platform-feature">
+                            <div class="feature-icon">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="white">
+                                    <line x1="12" y1="20" x2="12" y2="10"/>
+                                    <line x1="18" y1="20" x2="18" y2="4"/>
+                                    <line x1="6" y1="20" x2="6" y2="16"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Dashboard RRHH</h4>
+                                <p>Analítica completa: patrones de dolor, adherencia, mejoras y ROI del programa.</p>
+                            </div>
+                        </li>
+                        <li class="platform-feature">
+                            <div class="feature-icon">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="white">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Gamificación</h4>
+                                <p>Ranking de actividad con recompensas: spa, restaurante, sesiones extra de fisioterapia.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators -->
+    <section class="differentiators">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">¿Por qué Fisify?</span>
+                <h2 class="section-title">Nuestros <span>diferenciadores</span></h2>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card">
+                    <div class="diff-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h4>Ecosistema Completo</h4>
+                    <p>Presencial + digital + seguimiento + prevención en una sola solución.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+                        </svg>
+                    </div>
+                    <h4>Analítica de Datos</h4>
+                    <p>Información accionable para RRHH sobre hábitos y mejoras de salud.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h4>Seguimiento Personal</h4>
+                    <p>Llamadas, chat y corrección online. Acompañamiento real.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <h4>Flexibilidad Total</h4>
+                    <p>Empieza pequeño, escala según resultados y aceptación.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="white">
+                            <circle cx="12" cy="8" r="7"/>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                        </svg>
+                    </div>
+                    <h4>Gamificación</h4>
+                    <p>Rankings y recompensas que motivan hábitos saludables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Inversión</span>
+                <h2 class="section-title">Modelo de <span>pago flexible</span></h2>
+            </div>
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <div class="price-label">Sesión Presencial</div>
+                    <div class="price-amount">30<span>€</span></div>
+                    <div class="price-period">30 minutos por sesión</div>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Tratamiento personalizado
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Seguimiento continuo
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Plan de ejercicios
+                        </li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <div class="price-label">Seguimiento Mensual</div>
+                    <div class="price-amount">14,70<span>€</span></div>
+                    <div class="price-period">por paciente / mes</div>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            App con ejercicios
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Chat con fisioterapeuta
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Corrección por cámara
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Programas de prevención
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Analítica RRHH
+                        </li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <div class="price-label">Mínimo Semanal</div>
+                    <div class="price-amount">5<span>h</span></div>
+                    <div class="price-period">de servicio presencial</div>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Flexibilidad horaria
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Escalable según demanda
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Pago directo o empresa
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Próximos Pasos</span>
+                <h2 class="section-title">Hoja de <span>ruta</span></h2>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-card">
+                        <h4>Revisión de Propuesta</h4>
+                        <p>Volotea evalúa esta propuesta durante el trimestre, comparando servicios e inversiones con otras opciones del mercado.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-card">
+                        <h4>Visita a Oficinas</h4>
+                        <p>Fisify visita las nuevas oficinas para conocer de primera mano a los empleados, sus necesidades y el espacio "Dolce Farniente".</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-card">
+                        <h4>Piloto Oficinas Centrales</h4>
+                        <p>Lanzamiento del servicio presencial en las nuevas oficinas (mediados de año), con fisioterapia + seguimiento digital.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-card">
+                        <h4>Expansión Digital</h4>
+                        <p>Extensión del programa a tripulación y bases externas mediante videoconsultas y app, según resultados del piloto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>¿Listos para despegar<br>hacia el bienestar?</h2>
+        <p>Fisify está preparado para crear un programa a medida que transforme la salud y satisfacción del equipo Volotea.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <svg class="icon" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>635 743 006</span>
+            </div>
+            <div class="contact-item">
+                <svg class="icon" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>i.markinez@fisify.com</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logos">
+            <span class="footer-logo-fisify">fısify</span>
+            <span class="footer-divider">×</span>
+            <span class="footer-logo-volotea">VOLOTE<span class="letter-a">V</span></span>
+        </div>
+        <p>Propuesta personalizada de bienestar corporativo · 2025</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(69, 34, 36, 0.08)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.objective-card, .service-block, .employee-card, .diff-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
